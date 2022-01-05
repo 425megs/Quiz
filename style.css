@@ -1,21 +1,42 @@
-*, *::before, *::after {
+* {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+header{
+    width: 100%;
+    padding: 20px;
+    height: 50px;
+    background-color: darkseagreen;
+}
+
+nav {
+    background-color: darkseagreen;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hsBoard {
+    align-items: flex-start;
+}
+
+nav div {
+    align-items: flex-end;
 }
 
 body {
     background-color: cornflowerblue;
-    color: black;
-    padding: 0;
-    margin: 0;
-    display: flex;
     width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
 }
 
-.container {
+.quiz {
     width: 300px;
     max-width: 80%;
     background-color: #e2d8d8;
@@ -49,7 +70,7 @@ body {
     align-items: center;
 }
 
-.btn-grid {
+#answer-buttons{
     display: grid;
     margin: 5px;
     padding: 5px;

@@ -8,50 +8,36 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="container">
-        <div id="question-container" class="hide">
+    <header>
+        <nav>
+            <a class="hsBoard" href="./board.html">View Highscores</a>
+            <div class="time">Timer:</div>
+            <div id="main"></div>          
+        </nav>
+    </header>
+    <div class="quiz">
+        <div id="question-container">
             <div id="question">Question</div>
-            <div id="answer-buttons" class="btn-grid">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
+            <div id="answer-buttons">
+                <button class="btn" id="a">Answer 1</button>
+                <button class="btn" id="b">Answer 2</button>
+                <button class="btn" id="c">Answer 3</button>
             </div>
         </div>
         <div class="controls"></div>
             <button id="start-btn" class="start-btn button">Start</button>
             
     </div>
-    <!-- navigation menu with link to highscores and timer displayed -->
 
     <!-- guessing the quiz answers will probably be truthy and falsey values
         can probably write if else statements to control subtractions from the timer
         how to program to move to the next question regardless of truthy or falsey? -->
 
-    <!-- start button shouldn't direct to new page so it should be used simply to start the timer and present first question -->
+    <!-- start button shouldn't direct to new page so it should be used simply to start the timer and present first question. Will probably need to do something to just hide elements on page? -->
 
     <!-- probably need additional set of if else statements to display if the answer was correct or not -->
 
-    <!-- Questions
-    1. The ________ is cold today.
-        weather
-        whether
-        wheather
-    2. I have had ____ much Thai food today
-        to
-        two
-        too
-    3. I am meeting my friend at ______ house.
-        their
-        there 
-        they're
-    4. _____ place or mine?
-        you're
-        your
-        yours
-    5. Do you know ______ way to go?
-        witch
-        which
-        wich -->
-        <script src="script.js"></script>
+
+<script src="./script.js"></script>
 </body>
 </html>
