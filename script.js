@@ -6,10 +6,13 @@ var answerButtonsElement = document.querySelector("#answer-buttons")
 var answer1 = document.querySelector("#a")
 var answer2 = document.querySelector("#b")
 var answer3 = document.querySelector("#c")
+var checkbox = document.querySelector(".checkbox")
+var checkText = document.querySelector(".check")
 
-
+// Score and question default counts
 var score = 0;
 var increment = 0;
+
 // Timer variables
 var secondsLeft = 50;
 var timeEl = document.querySelector(".time");
@@ -19,46 +22,35 @@ var mainEl = document.querySelector("#main");
 var questions = [
     {
         question: "1. The ______ is cold today.",
-        choiceA: "weather",
-        choiceB: "whether",
-        choiceC: "wheather",
-        correct: "a"
+        choices: ["weather", "whether", "wheather"],
+        correct: "weather"
     },
 
     {
         question: "2. I have had ____ much Thai food today.",
-        choiceA: "to",
-        choiceB: "too",
-        choiceC: "two",
-        correct: "b"
+        choices: ["to","too","two"],
+        correct: "too"
     },
 
     {
         question: "3. I am meeting my friend at ______ house.",
-        choiceA: "their",
-        choiceB: "there",
-        choiceC: "they're",
-        correct: "a"
+        choices: ["their", "there","they're"],
+        correct: "their"
     },
 
     {
         question: "4. _____ place or mine?",
-        choiceA: "you're",
-        choiceB: "yours",
-        choiceC: "your",
-        correct: "c"
+        choices: ["you're","yours", "your"],
+        correct: "your"
     },
 
     {
         question: "5. Do you know ______ way to go?",
-        choiceA: "witch",
-        choiceB: "which",
-        choiceC: "wich",
-        correct: "b"
+        choices: ["witch","which","wich"],
+        correct: "which"
     }
 ];
 
-//why doesn't this timer function work??
 function setTime() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
@@ -72,56 +64,65 @@ function setTime() {
         }
 //set up reading for next question
         else {
-            //might need to move around to make sure comparisons in 117+ are comparing the answer for the right questions
-            increment++;
             setNextQuestion();
         } 
     }, 1000);
 }
 
-// Function to create and append colorsplosion image
+// Function to direct me to the highscores board
 function sendMessage() {
     timeEl.textContent = " ";
     var divEl = document.createElement("div");
-    divEl.setAttribute("src", "./board.html");
+    divEl.setAttribute("src", "https://425megs.github.io/Quiz/board.html");
     mainEl.append(divEl);
 }
 
-function compareAnswer(event) {
-    event.preventDefault();
-    event.target.id === questions[increment].correct
-    //need to display if correct / wrong and then adjust timer accordingly
+function compareAnswer(correct) {
+    checkText.style.display = "block" 
+    checkbox.style.display="block"
+    if (questions[increment].correct === questions[increment].choices[correct]) {
+        checkText.textContent = "Correct!"
+    } else {
+        checkText.textContent = "Wrong :("
+        secondsLeft -=10;
+    }  
+    increment++;   
+    if (increment < questions.length) {
+        setNextQuestion();
+    // } else {
+    //     direct to https://425megs.github.io/Quiz/board.html"
+    // }
+    }
 }
 
+
+
+function option1() {
+    compareAnswer(0)
+}
+function option2() {
+    compareAnswer(1)
+}
+function option3() {
+    compareAnswer(2)
+}
+answer1.addEventListener("click", option1)
+answer2.addEventListener("click", option2)
+answer3.addEventListener("click", option3)
+// console.log(answer1) reading but not moving on
 function setNextQuestion() {
     questionElement.textContent = questions[increment].question
-    answer1.textContent = questions[increment].choiceA
-    answer2.textContent = questions[increment].choiceB
-    answer3.textContent = questions[increment].choiceC
+    answer1.textContent = questions[increment].choices[0]
+    answer2.textContent = questions[increment].choices[1]
+    answer3.textContent = questions[increment].choices[2]
 }
-
-function showQuestion(question) {
-    questionElement.textContent = question.question
-    question.answers.forEach(answer => {
-        var button = document.createElement("button")
-        button.textContent = answer.textbutton.classList.add("btn")
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
-        button.addEventListener("click", selectAnswer)
-        answerButtonsElement.appendChild(button)
-    })
-}
-
 
 // Game should be started once start button is clicked
 startButton.addEventListener("click", startGame)
-answer1.addEventListener("click", compareAnswer)
-answer2.addEventListener("click", compareAnswer)
-answer3.addEventListener("click", compareAnswer)
+
 
 function startGame() {
-    //need something in here to hide the answer buttons initially, then redisplay once start is pushed and then hide the start button. 
+    //need something in here to hide the answer buttons initially, then redisplay once start is pushed and then hide the start button. something about display none..
     setTime();
     setNextQuestion();
 }
