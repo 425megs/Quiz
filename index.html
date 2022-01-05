@@ -16,6 +16,7 @@
         </nav>
     </header>
     <div class="quiz">
+        <!-- Container for displaying question and answer choices -->
         <div id="question-container">
             <div id="question">Question</div>
             <div id="answer-buttons">
@@ -23,12 +24,32 @@
                 <button class="btn" id="b">Answer 2</button>
                 <button class="btn" id="c">Answer 3</button>
             </div>
+        <!-- For reading the answer selected -->
             <div class ="checkbox" style ="display:none">
                 <p class ="check" style="display:none"></p>
             </div>
         </div>
+        <!-- Formatting end page -->
+        <div class="end">
+            <h1>Game Over!</h1>
+            <form>
+                <input
+                    type="text",
+                    name="username"
+                    id="initials"
+                    placeholder="initials"
+                />
+                <button
+                    type="submit"
+                    id="saveScore"
+                    onclick="highScores(event)">Submit
+                </button>
+            </form>
+        <!-- need highscore board somewhere -->
+        </div>
+        <!-- Start button -->
         <div class="controls"></div>
-            <button id="start-btn" class="start-btn button">Start</button>
+        <button id="start-btn" class="start-btn button">Start</button>
             
     </div>
 

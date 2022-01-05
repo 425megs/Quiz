@@ -18,7 +18,7 @@ var secondsLeft = 50;
 var timeEl = document.querySelector(".time");
 var mainEl = document.querySelector("#main");
 
-//Questions and Answers
+//Questions and Answers Array
 var questions = [
     {
         question: "1. The ______ is cold today.",
@@ -51,15 +51,16 @@ var questions = [
     }
 ];
 
+// Timer
 function setTime() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
-        timeEl.textContent = "timer: " + secondsLeft;
+        timeEl.textContent = "Timer: " + secondsLeft;
 
         if (secondsLeft <= 0 || increment === questions.length-1) {
-            // Stops execution of action at set interval
+            // Stops timer
             clearInterval(timerInterval);
-            // Calls function to create and append image
+            // Calls function to generate highscore board
             sendMessage();
         }
 //set up reading for next question
@@ -69,12 +70,13 @@ function setTime() {
     }, 1000);
 }
 
-// Function to direct me to the highscores board
+// Function to direct me to enter my highscore
+// Currently doesn't do anything and would be directing me to a blank webpage if it did work
 function sendMessage() {
     timeEl.textContent = " ";
-    var divEl = document.createElement("div");
-    divEl.setAttribute("src", "https://425megs.github.io/Quiz/board.html");
-    mainEl.append(divEl);
+    var aEl = document.createElement("a");
+    aEl.setAttribute("src", "url:https://425megs.github.io/Quiz/board.html");
+    mainEl.append(aEl);
 }
 
 function compareAnswer(correct) {
@@ -90,13 +92,12 @@ function compareAnswer(correct) {
     if (increment < questions.length) {
         setNextQuestion();
     // } else {
-    //     direct to https://425megs.github.io/Quiz/board.html"
+    //     direct to form to submit initials
     // }
     }
 }
 
-
-
+// Functions triggered by event listeners to check if answer selected is correct/incorrect
 function option1() {
     compareAnswer(0)
 }
@@ -106,10 +107,13 @@ function option2() {
 function option3() {
     compareAnswer(2)
 }
+
+// Event listeners for each answer choice
 answer1.addEventListener("click", option1)
 answer2.addEventListener("click", option2)
 answer3.addEventListener("click", option3)
-// console.log(answer1) reading but not moving on
+
+// Function moving us to the next question in Array
 function setNextQuestion() {
     questionElement.textContent = questions[increment].question
     answer1.textContent = questions[increment].choices[0]
@@ -117,12 +121,18 @@ function setNextQuestion() {
     answer3.textContent = questions[increment].choices[2]
 }
 
-// Game should be started once start button is clicked
+// Function needed to move us to Highscore History after we submit our initials
+// Need something to display score as secondsLeft
+function highScores() {
+
+}
+
+// Starts game when Start button is clicked
 startButton.addEventListener("click", startGame)
 
-
+// Function to start the timer and move us to the first question.
+// Need to figure out how to hide Start button once pushed
 function startGame() {
-    //need something in here to hide the answer buttons initially, then redisplay once start is pushed and then hide the start button. something about display none..
     setTime();
     setNextQuestion();
 }
