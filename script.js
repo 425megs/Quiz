@@ -48,7 +48,7 @@ var questions = [
         question: "5. Do you know ______ way to go?",
         choices: ["witch","which","wich"],
         correct: "which"
-    }
+    },
 ];
 
 // Timer
@@ -57,20 +57,28 @@ function setTime() {
         secondsLeft--;
         timeEl.textContent = "Timer: " + secondsLeft;
 
-        if (secondsLeft <= 0 || increment === questions.length-1) {
+        if (secondsLeft <= 0) {
             // Stops timer
             clearInterval(timerInterval);
             // Calls function to generate highscore board
-            sendMessage();
+            gameOver();
         }
-//set up reading for next question
-        else {
-            setNextQuestion();
-        } 
     }, 1000);
 }
 
-// Function to direct me to enter my highscore
+// Function to direct me to enter my initials and score of secondsLeft
+function gameOver(){
+    // Louis said not to declare as global variables -\(*_*)/-
+    document.querySelector(".time").remove();
+    document.querySelector("#question-container").remove();
+    document.querySelector("#start-btn").remove();
+    document.querySelector("#endMessage").textContent = "Your score is " + secondsLeft;
+    document.querySelector(".form").style.display = "block"
+
+    // add event listener for click on submit button to then rediret to board.html
+}
+
+
 // Currently doesn't do anything and would be directing me to a blank webpage if it did work
 function sendMessage() {
     timeEl.textContent = " ";
@@ -91,9 +99,8 @@ function compareAnswer(correct) {
     increment++;   
     if (increment < questions.length) {
         setNextQuestion();
-    // } else {
-    //     direct to form to submit initials
-    // }
+    } else {
+        gameOver();
     }
 }
 
