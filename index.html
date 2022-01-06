@@ -17,7 +17,7 @@
     </header>
     <div class="quiz">
         <!-- Container for displaying question and answer choices -->
-        <div id="question-container">
+        <div id="question-container" style="display:none">
             <div id="question">Question</div>
             <div id="answer-buttons">
                 <button class="btn" id="a">Answer 1</button>
@@ -42,10 +42,9 @@
                 <button
                     type="submit"
                     id="saveScore"
-                    onclick="highScores(event)">Submit
+                    onclick="submitButton(event)">Submit
                 </button>
             </form>
-        <!-- need highscore board somewhere -->
         </div>
         <!-- Start button -->
         <div class="controls"></div>

@@ -1,4 +1,5 @@
 // Start and Answer Buttons
+console.log("hello??")
 var startButton = document.querySelector(".start-btn")
 var questionContainerEl = document.querySelector("#question-container")
 var questionElement = document.querySelector("#question")
@@ -8,6 +9,8 @@ var answer2 = document.querySelector("#b")
 var answer3 = document.querySelector("#c")
 var checkbox = document.querySelector(".checkbox")
 var checkText = document.querySelector(".check")
+var initialsInput = document.querySelector("#initials")
+var scoreBoard = document.querySelector("#saveScore")
 
 // Score and question default counts
 var score = 0;
@@ -17,6 +20,7 @@ var increment = 0;
 var secondsLeft = 50;
 var timeEl = document.querySelector(".time");
 var mainEl = document.querySelector("#main");
+var timerInterval;
 
 //Questions and Answers Array
 var questions = [
@@ -53,7 +57,8 @@ var questions = [
 
 // Timer
 function setTime() {
-    var timerInterval = setInterval(function () {
+    document.querySelector("#question-container").style.display = "block"
+    timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = "Timer: " + secondsLeft;
 
@@ -68,23 +73,23 @@ function setTime() {
 
 // Function to direct me to enter my initials and score of secondsLeft
 function gameOver(){
-    // Louis said not to declare as global variables -\(*_*)/-
-    document.querySelector(".time").remove();
+    // Louis said not to declare as global variables -\('_')/-
+    clearInterval(timerInterval);
     document.querySelector("#question-container").remove();
     document.querySelector("#start-btn").remove();
     document.querySelector("#endMessage").textContent = "Your score is " + secondsLeft;
     document.querySelector(".form").style.display = "block"
+    console.log("hi")
+};
 
-    // add event listener for click on submit button to then rediret to board.html
-}
-
-
-// Currently doesn't do anything and would be directing me to a blank webpage if it did work
-function sendMessage() {
-    timeEl.textContent = " ";
-    var aEl = document.createElement("a");
-    aEl.setAttribute("src", "url:https://425megs.github.io/Quiz/board.html");
-    mainEl.append(aEl);
+function submitButton(event){
+console.log("submitButton")
+  event.preventDefault();
+  var initials = (initialsInput.value);
+  var newScore = [initials, secondsLeft];
+  console.log(newScore)
+  localStorage.setItem("newScore", JSON.stringify(newScore));
+  window.location.href = "https://425megs.github.io/Quiz/board.html"
 }
 
 function compareAnswer(correct) {
@@ -129,16 +134,12 @@ function setNextQuestion() {
 }
 
 // Function needed to move us to Highscore History after we submit our initials
-// Need something to display score as secondsLeft
-function highScores() {
 
-}
 
 // Starts game when Start button is clicked
 startButton.addEventListener("click", startGame)
 
 // Function to start the timer and move us to the first question.
-// Need to figure out how to hide Start button once pushed
 function startGame() {
     setTime();
     setNextQuestion();
