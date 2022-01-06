@@ -1,34 +1,40 @@
+var currentHighScores = []
+var scoreTable = document.querySelector("#table")
+
 function initialize(){
+    console.log("help")
     if (localStorage.getItem("highScores") !==null) {
-        highScores=JSON.parse(localStorage.getItem("highScores"));
+        currentHighScores=JSON.parse(localStorage.getItem("highScores"));
     }
 
-    var newScore = JSON.parse(localStorage.getItem("newScores"));
+    var newScore = JSON.parse(localStorage.getItem("newScore"));
+
     if (newScore !== null) {
-        highScores.push(newScore);
+        currentHighScores.push(newScore);
     }
 
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-
+    localStorage.setItem("highScores", JSON.stringify(currentHighScores));
     renderScores();
-}  
+}
 
 function renderScores(){
-var top3 = {
-    "initials": "localStorage.getItem();
-    "score": "localStorage.getItem();
-    // somehow sorts lowest to highest times
-}
+    currentHighScores.sort(function(a,b) {
+        return b[1] - a[1];
+    })
+// var top3 = {
+//     "initials": 
+//     "score": 
+//     // somehow sorts lowest to highest times
+// }
 //     puts it in table on html
-}
+// }
 
 
 
-function clearButton() {
-    localStorage.clear();
-}
+// function clearButton() {
+//     localStorage.clear();
+// }
 
     
     
 initialize();
-

@@ -141,6 +141,7 @@ startButton.addEventListener("click", startGame)
 
 // Function to start the timer and move us to the first question.
 function startGame() {
+    document.querySelector("#start-btn").style.display ="none"
     setTime();
     setNextQuestion();
 }
