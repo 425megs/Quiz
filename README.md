@@ -1,4 +1,7 @@
 # Spelling Test
+live site: https://425megs.github.io/Quiz/index.html 
+<br>
+repo: https://github.com/425megs/Quiz
 
 ## Your Task
 
