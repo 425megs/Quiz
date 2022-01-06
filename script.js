@@ -1,5 +1,4 @@
 // Start and Answer Buttons
-console.log("hello??")
 var startButton = document.querySelector(".start-btn")
 var questionContainerEl = document.querySelector("#question-container")
 var questionElement = document.querySelector("#question")
@@ -132,9 +131,6 @@ function setNextQuestion() {
     answer2.textContent = questions[increment].choices[1]
     answer3.textContent = questions[increment].choices[2]
 }
-
-// Function needed to move us to Highscore History after we submit our initials
-
 
 // Starts game when Start button is clicked
 startButton.addEventListener("click", startGame)
