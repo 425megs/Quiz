@@ -78,17 +78,15 @@ function gameOver(){
     document.querySelector("#start-btn").remove();
     document.querySelector("#endMessage").textContent = "Your score is " + secondsLeft;
     document.querySelector(".form").style.display = "block"
-    console.log("hi")
 };
 
 function submitButton(event){
-console.log("submitButton")
   event.preventDefault();
   var initials = (initialsInput.value);
   var newScore = [initials, secondsLeft];
   console.log(newScore)
   localStorage.setItem("newScore", JSON.stringify(newScore));
-  window.location.href = "https://425megs.github.io/Quiz/board.html"
+  window.location.href = "./board.html"
 }
 
 function compareAnswer(correct) {
