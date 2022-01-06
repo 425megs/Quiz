@@ -9,27 +9,19 @@
 </head>
 <body>
     <a class="returnToMain" href="./index.html">Main Menu</a>
-    <table id="table">
+    <table>
+        <thead>
         <tr>
             <th>Initials</th>
             <th>Score</th>
         </tr>
-        <tr class="hs1">
-            <td>Initials</td>
-            <td>Score</td>
-        </tr>
-        <tr class="hs2">
-            <td>Initials</td>
-            <td>Score</td>
-        </tr>
-        <tr class="hs3">
-            <td>Initials</td>
-            <td>Score</td>
-        </tr>
+        </thead>
+        <tbody id="table">
+
+        </tbody>
     </table>
-    <button
+    <button id="clearBoard"
     type="submit"
-    id="clearBoard"
     onclick="clearBoard(event)">Clear Highscores
     </button>
 <script src="./board.js"></script>
