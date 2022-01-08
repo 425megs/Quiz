@@ -1,4 +1,4 @@
-var currentHighScores = []
+var currentHighScores = [] 
 var scoreTable = document.querySelector("#table")
 
 
